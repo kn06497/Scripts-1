@@ -2,14 +2,12 @@
 cd ../
 cd slimkat4.4
 . build/envsetup.sh
-echo "Enter commit message"
-choice=""
 echo ""
 echo ""
 echo "########################"
 echo "Type code name of device"
 echo "########################"
 echo ""
-echo ""
+choice=""
 read choice
 brunch "$choice"

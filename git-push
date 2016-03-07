@@ -1,0 +1,15 @@
+#!/bin/bash
+git init 
+git add .
+git status
+echo "Enter commit message"
+commit=""
+read commit
+git commit -m "$commit"
+url=""
+read url
+git remote add origin "$url"
+branch=""
+read branch
+git branch -m $branch
+git push origin $branch
