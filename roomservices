@@ -21,14 +21,14 @@ echo ""
 devicebranch=""
 read devicebranch
 echo "########################"
-echo "from where you want to sync this device tree "
+echo "From where you want to sync this device tree "
 echo "For example :- Github , bitbucket ,etc"
 echo "########################"
 echo ""
 devicegit=""
 read devicegit
 echo "########################"
-echo "enter device tree path "
+echo "Enter device tree path "
 echo "For example :- device/samsung/kyleve"
 echo "########################"
 echo ""
@@ -72,11 +72,11 @@ echo "<project path=\"$vendorpath\" name=\"$vendorrepo\" revision=\"$vendorbranc
 ########################################################################################################################
 echo "########################"
 echo "Enter kernel repo address"
-echo "For example :- Grace5921/android_vendor_kyleve"
+echo "For example :- Grace5921/android_kernel_kyleve"
 echo "########################"
 echo ""
-vendorrepo=""
-read vendorrepo
+kernelrepo=""
+read kernelrepo
 echo ""
 echo "########################"
 echo "Enter branch name which you want to dowload for $code"
@@ -86,7 +86,7 @@ kernelbranch=""
 read kernelbranch
 echo "########################"
 echo "Enter device tree path "
-echo "For example :- vendor/samsung/kyleve"
+echo "For example :- kernel/samsung/kyleve"
 echo "########################"
 echo ""
 kernelpath=""
@@ -98,9 +98,11 @@ echo "########################"
 echo ""
 kernelgit=""
 read kernelgit
-echo "<!-- This is vendor tree related stuff -->" >> $code.xml
-echo "<project path=\"$kernelpath\" name=\"$kernelrrepo\" revision=\"$kernelbranch\" remote=\"$kernelgit\" />" >> $code.xml
+echo "<!-- This is kernel tree related stuff -->" >> $code.xml
+echo "<project path=\"$kernelpath\" name=\"$kernelrepo\" revision=\"$kernelbranch\" remote=\"$kernelgit\" />" >> $code.xml
 echo "</manifest>" >> $code.xml
+mkdir local_manifests
+cp $code.xml local_manifests/$code.xml
 echo ""
 echo "roomservices.xml is ready for $code "
-echo "it's name is $code.xml"
+echo "Copy local_manifests folder to .repo and repo sync "
