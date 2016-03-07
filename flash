@@ -1,0 +1,28 @@
+#!/bin/bash
+adb devices
+echo ""
+echo "#########################################################"
+echo ""
+echo "Enter patch to your Boot or recovery whatever you are flashing "
+echo ""
+echo "#########################################################"
+echo ""
+echo "For example mine boot.img path is :- /dev/block/mmcblk0p5"
+echo ""
+echo "#########################################################"
+flash=""
+read flash
+adb shell mount -o rw,remount /system
+adb push boot.img /system/bin/boot.img
+echo "#/bin/bash
+cd /system/bin
+dd if=boot.img of=$flash" > tmp
+chmod 775 tmp
+adb push tmp /system/bin/tmp
+adb shell tmp
+adb shell rm /system/bin/boot.img
+adb shell rm /system/bin/tmp
+adb reboot
+rm tmp
+
+
