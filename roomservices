@@ -41,7 +41,7 @@ echo "<project path=\"$devicepath\" name=\"$devicerepo\" revision=\"$devicebranc
 ########################################################################################################################
 echo "########################"
 echo "enter vendor repo address"
-echo "For example :- Grace5921/android_device_kyleve"
+echo "For example :- Grace5921/android_vendor_kyleve"
 echo "########################"
 echo ""
 vendorrepo=""
@@ -68,11 +68,11 @@ echo ""
 vendorath=""
 read vendorath
 echo "<!-- This is vendor tree related stuff -->" >> $code.xml
-echo "<project path=\"$vendorath\" name=\"$vendorrepo\" revision=\"$vendorbranch\" remote=\"vendoregit\" />" >> $code.xml
+echo "<project path=\"$vendorath\" name=\"$vendorrepo\" revision=\"$vendorbranch\" remote=\"$vendoregit\" />" >> $code.xml
 ########################################################################################################################
 echo "########################"
 echo "enter kernel repo address"
-echo "For example :- Grace5921/android_device_kyleve"
+echo "For example :- Grace5921/android_kernel_kyleve"
 echo "########################"
 echo ""
 kernelrepo=""
@@ -99,7 +99,7 @@ echo ""
 kernelpath=""
 read kernelpath
 echo "<!-- This is kernel related stuff -->" >> $code.xml
-echo "<project path=\"$kernelpath\" name=\"$kernelrepo\" revision=\"$kernelbranch\" remote=\"kernelgit\" />" >> $code.xml
+echo "<project path=\"$kernelpath\" name=\"$kernelrepo\" revision=\"$kernelbranch\" remote=\"$kernelgit\" />" >> $code.xml
 echo "</manifest>" >> $code.xml
 echo ""
 echo "roomservices.xml is ready for $code "
