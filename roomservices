@@ -1,0 +1,106 @@
+#!/bin/bash
+echo "########################"
+echo "Enter device code name "
+echo "########################"
+code=""
+read code
+touch $code.xml
+echo ""
+echo "########################"
+echo "enter device repo address"
+echo "For example :- Grace5921/android_device_kyleve"
+echo "########################"
+echo ""
+devicerepo=""
+read devicerepo
+echo ""
+echo "########################"
+echo "enter branch name which you want to dowload for $code"
+echo "########################"
+echo ""
+devicebranch=""
+read devicebranch
+echo "########################"
+echo "from where you want to sync this device tree "
+echo "For example :- Github , bitbucket ,etc"
+echo "########################"
+echo ""
+devicegit=""
+read devicegit
+echo "########################"
+echo "enter device tree path "
+echo "For example :- device/samsung/kyleve"
+echo "########################"
+echo ""
+devicepath=""
+read devicepath 
+echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" >> $code.xml
+echo "<manifest>" >> $code.xml
+echo "<!-- This is device tree related stuff -->" >> $code.xml
+echo "<project path=\"$devicepath\" name=\"$devicerepo\" revision=\"$devicebranch\" remote=\"devicegit\" />" >> $code.xml
+########################################################################################################################
+echo "########################"
+echo "enter vendor repo address"
+echo "For example :- Grace5921/android_device_kyleve"
+echo "########################"
+echo ""
+vendorrepo=""
+read vendorrepo
+echo ""
+echo "########################"
+echo "enter branch name which you want to dowload for $code"
+echo "########################"
+echo ""
+vendorbranch=""
+read vendorbranch
+echo "########################"
+echo "from where you want to sync this device tree "
+echo "For example :- Github , bitbucket ,etc"
+echo "########################"
+echo ""
+venodregit=""
+read venodregit
+echo "########################"
+echo "enter device tree path "
+echo "For example :- vendor/samsung/kyleve"
+echo "########################"
+echo ""
+vendorath=""
+read vendorath
+echo "<!-- This is vendor tree related stuff -->" >> $code.xml
+echo "<project path=\"$vendorath\" name=\"$vendorrepo\" revision=\"$vendorbranch\" remote=\"vendoregit\" />" >> $code.xml
+########################################################################################################################
+echo "########################"
+echo "enter kernel repo address"
+echo "For example :- Grace5921/android_device_kyleve"
+echo "########################"
+echo ""
+kernelrepo=""
+read kernelrepo
+echo ""
+echo "########################"
+echo "enter branch name which you want to dowload for $code"
+echo "########################"
+echo ""
+kernelbranch=""
+read kernelbranch
+echo "########################"
+echo "from where you want to sync this device tree "
+echo "For example :- Github , bitbucket ,etc"
+echo "########################"
+echo ""
+kernelgit=""
+read kernel
+echo "########################"
+echo "enter device tree path "
+echo "For example :- kernel/samsung/kyleve"
+echo "########################"
+echo ""
+kernelpath=""
+read kernelpath
+echo "<!-- This is kernel related stuff -->" >> $code.xml
+echo "<project path=\"$kernelpath\" name=\"$kernelrepo\" revision=\"$kernelbranch\" remote=\"kernelgit\" />" >> $code.xml
+echo "</manifest>" >> $code.xml
+echo ""
+echo "roomservices.xml is ready for $code "
+echo "it's name is $code.xml"
