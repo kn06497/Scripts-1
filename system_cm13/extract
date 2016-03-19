@@ -1,0 +1,39 @@
+#!/bin/bash
+chmod 775 sdat2img.py
+chmod 775 rimg2sdat
+chmod 775 make_ext4fs
+mkdir rom 
+cd rom 
+cp ../sdat2img.py sdat2img.py
+cp ../rimg2sdat rimg2sdat
+cp ../make_ext4fs make_ext4fs
+echo "#######################"
+echo "Enter path to your rom.zip "
+echo "#######################"
+path=""
+read path
+cp $path tmp.zip
+unzip tmp.zip
+./sdat2img.py system.transfer.list system.new.dat system.img
+rm syste.new.dat
+sudo mount -t ext4 -o loop system.img output/
+echo "##############################################"
+echo "Press ctrl+c in terminal when changes are done "
+echo "##############################################"
+sudo nautilus
+sudo ./make_ext4fs -T 0 -S file_contexts -l 3145728000 -a system system_new.img output/
+./rimg2sdat system_new.img
+name=""
+read name
+echo "################"
+echo "Enter zip name "
+echo ""
+zip $name.zip -r install/ system.new.dat system.patch.dat system.transfer.list boot.img file_contexts META-INF/ install/ system/
+sudo umount system.img output/
+rm -rf META-INF
+rm -rf install
+rm boot.*
+sudo rm -rf system.img
+sudo rm -rf output 
+sudo rm -rf tmp.zip
+

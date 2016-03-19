@@ -102,7 +102,7 @@ echo "<!-- This is kernel tree related stuff -->" >> $code.xml
 echo "<project path=\"$kernelpath\" name=\"$kernelrepo\" revision=\"$kernelbranch\" remote=\"$kernelgit\" />" >> $code.xml
 echo "</manifest>" >> $code.xml
 mkdir local_manifests
-cp $code.xml local_manifests/$code.xml
+mv $code.xml local_manifests/$code.xml
 echo ""
 echo "roomservices.xml is ready for $code "
 echo "Copy local_manifests folder to .repo and repo sync "
