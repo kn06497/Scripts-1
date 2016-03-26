@@ -15,7 +15,7 @@ read path
 cp $path tmp.zip
 unzip tmp.zip
 ./sdat2img.py system.transfer.list system.new.dat system.img
-rm syste.new.dat
+rm system.new.dat
 sudo mount -t ext4 -o loop system.img output/
 echo "##############################################"
 echo "Press ctrl+c in terminal when changes are done "
