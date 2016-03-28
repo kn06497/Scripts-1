@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Press Ctrl+C when changes are done"
+sudo nautilus
