@@ -32,11 +32,13 @@ echo "Press ctrl+c in terminal when changes are done "
 echo "##############################################"
 #Changes
 xterm -e ./xterm
-#Unmount
-sudo umount system.img output/
 #make image
-sudo ./make_ext4fs -T 0 -S file_contexts -l 3145728000 -a system system_new.img output/
+echo "Enter Image size in bytes"
+size=""
+read size
+sudo ./make_ext4fs -T 0 -S file_contexts -l $size -a system system_new.img output/
 ./rimg2sdat system_new.img
+sudo umount system.img output/
 name=""
 echo "################"
 echo "Enter zip name "
