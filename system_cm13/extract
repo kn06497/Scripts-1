@@ -43,10 +43,7 @@ echo "Enter zip name "
 echo "###############"
 read name
 zip $name.zip -r install/ system.new.dat system.patch.dat system.transfer.list boot.img file_contexts META-INF/ install/ system/
-rm -rf META-INF
-rm -rf install
-rm boot.*
-sudo rm -rf system.img
-sudo rm -rf output 
-sudo rm -rf tmp.zip
+mv $name.zip ../$name.zip
+cd ../
+rm -rf rom
 
