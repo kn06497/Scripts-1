@@ -1,8 +1,10 @@
 #!/bin/bash
-cd ../
-cd slimkat4.4
+cd
+path=""
+echo "enter path to your source"
+read path
+cd $Path
 . build/envsetup.sh
-echo ""
 echo ""
 echo "########################"
 echo "Type code name of device"
@@ -10,4 +12,4 @@ echo "########################"
 echo ""
 choice=""
 read choice
-brunch "$choice"
+mka bacon -j10 $choice
