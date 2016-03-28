@@ -106,3 +106,44 @@ mv $code.xml local_manifests/$code.xml
 echo ""
 echo "roomservices.xml is ready for $code "
 echo "Copy local_manifests folder to .repo and repo sync "
+###############################################################################################################################################
+echo "########################"
+echo "Enter hardware repo address"
+echo "For example :- Grace5921/android_kernel_kyleve"
+echo "########################"
+echo ""
+hardwarerepo=""
+echo ""
+echo "########################"
+echo "Enter branch name which you want to dowload for $code"
+echo "########################"
+echo ""
+read hardwarerepo
+hardwarebranch=""
+echo "########################"
+echo "Enter device tree path "
+echo "For example :- kernel/samsung/kyleve"
+echo "########################"
+echo ""
+read hardwarebranch
+hardwarepath=""
+echo "########################"
+echo "Enter hardware tree path "
+echo "For example :- hardware/samsung/"
+echo "########################"
+read hardwarepath
+hardwaregit=""
+echo "########################"
+echo "From where you want to sync this device tree "
+echo "For example :- Github , bitbucket ,etc"
+echo "########################"
+echo ""
+read hardwaregit
+echo "<!-- This is kernel tree related stuff -->" >> $code.xml
+echo "<project path=\"$hardwarepath\" name=\"$hardwarerepo\" revision=\"$hardwarebranch\" remote=\"$hardwaregit\" />" >> $code.xml
+echo "</manifest>" >> $code.xml
+mkdir local_manifests
+mv $code.xml local_manifests/$code.xml
+echo ""
+echo "roomservices.xml is ready for $code "
+echo "Copy local_manifests folder to .repo and repo sync "
