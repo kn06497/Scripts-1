@@ -1,18 +1,18 @@
 #!/bin/bash
 #Permission
-chmod 775 sdat2img.py
-chmod 775 rimg2sdat
-chmod 775 make_ext4fs
-chmod 775 xterm
+chmod 775 tools/sdat2img.py
+chmod 775 tools/rimg2sdat
+chmod 775 tools/make_ext4fs
+chmod 775 tools/xterm
 #Dir
 mkdir rom 
 mkdir rom/output
 cd rom 
 #Copy
-cp ../sdat2img.py sdat2img.py
-cp ../rimg2sdat rimg2sdat
-cp ../make_ext4fs make_ext4fs
-cp ../xterm xterm
+cp ../tools/sdat2img.py sdat2img.py
+cp ../tools/rimg2sdat rimg2sdat
+cp ../tools/make_ext4fs make_ext4fs
+cp ../tools/xterm xterm
 #Output
 echo "#######################"
 echo "Enter path to your rom.zip "
