@@ -1,2 +1,6 @@
 This allows you to unpack and repack boot.img for newer device like A8 or J2
-How to use
+How to use:-
+1. cd to/that/folder/
+2. ./makebootimage
+3. enter path to boot.img
+4. repack and enjoy
