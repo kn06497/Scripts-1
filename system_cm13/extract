@@ -32,6 +32,9 @@ echo "Press ctrl+c in terminal when changes are done "
 echo "##############################################"
 #Changes
 xterm -e ./xterm
+#Unmount
+sudo umount system.img output/
+#make image
 sudo ./make_ext4fs -T 0 -S file_contexts -l 3145728000 -a system system_new.img output/
 ./rimg2sdat system_new.img
 name=""
@@ -40,7 +43,6 @@ echo "Enter zip name "
 echo "###############"
 read name
 zip $name.zip -r install/ system.new.dat system.patch.dat system.transfer.list boot.img file_contexts META-INF/ install/ system/
-sudo umount system.img output/
 rm -rf META-INF
 rm -rf install
 rm boot.*
