@@ -1,0 +1,37 @@
+#!/bin/bash
+mkdir extracted-boot
+echo "######################"
+echo "Enter path to boot.img"
+echo "######################"
+path=""
+read path
+cp $path extracted-boot/boot.img
+cp tools/mkbootimg extracted-boot/mkbootimg
+cp tools/unpackbootimg extracted-boot/unpackbootimg
+chmod 775 extracted-boot/mkbootimg
+chmod 775 extracted-boot/unpackbootimg
+cd extracted-boot 
+./unpackbootimg -i boot.img
+mv boot.img-zImage zImage
+path=`pwd $0`
+echo "###############################################"
+echo "Go to $path/extracted-boot and replace kernel "
+echo "Press enter when changes are done"
+echo "###############################################"
+enter=""
+read enter
+kernel=zImage
+ramdisk=boot.img-ramdisk.gz
+base=`cat boot.img-base`
+dt=boot.img-dtb
+kerneloff=`cat boot.img-kerneloff`
+pagesize=`cat boot.img-pagesize`
+ramsiskoff=`cat boot.img-ramdiskoff`
+tagsoff=`cat boot.img-tagsoff`
+echo "Enter name"
+name=""
+read name
+./mkbootimg --kernel $kernel  --ramdisk $ramdisk --dt $dt --ramdisk_offset $ramsiskoff --tags_offset $tagsoff --base $base --pagesize $pagesize -o $name
+mv $name ../$name
+cd ..
+rm -rf extracted-boot
