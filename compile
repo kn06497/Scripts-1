@@ -13,4 +13,4 @@ echo ""
 choice=""
 read choice
 lunch $choice
-mka bacon -j10 $choice
+mka bacon -j10
