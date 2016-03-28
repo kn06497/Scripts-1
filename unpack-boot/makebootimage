@@ -31,7 +31,7 @@ tagsoff=`cat boot.img-tagsoff`
 echo "Enter name"
 name=""
 read name
-./mkbootimg --kernel $kernel  --ramdisk $ramdisk --dt $dt --ramdisk_offset $ramsiskoff --tags_offset $tagsoff --base $base --pagesize $pagesize -o $name
-mv $name ../$name
+./mkbootimg --kernel $kernel  --ramdisk $ramdisk --dt $dt --ramdisk_offset $ramsiskoff --tags_offset $tagsoff --base $base --pagesize $pagesize -o $name.img
+mv $name.img ../$name.img
 cd ..
 rm -rf extracted-boot
