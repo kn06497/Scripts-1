@@ -1,5 +1,9 @@
 #!/bin/bash
 adb devices
+echo "press enter  when device booted into recovery"
+adb reboot recovery
+enter=""
+read enter
 echo ""
 echo "#########################################################"
 echo ""
@@ -12,7 +16,6 @@ echo "And recovery path is:- mmcblk06"
 echo "#########################################################"
 flash=""
 read flash
-adb shell mount -o rw,remount /system
 echo ""
 echo "#########################################################"
 echo "Path to your boot.img or recovery.img"
@@ -20,16 +23,16 @@ echo "#########################################################"
 echo ""
 recovery=""
 read recovery
-adb push $recovery /system/bin/$recovery
+adb push $recovery /system/bin/boot.img
 echo "#/bin/bash
 cd /system/bin
-dd if=$recovery of=/dev/block/$flash" > tmp
+dd if=boot.img of=/dev/block/$flash" > tmp
 chmod 775 tmp
 adb push tmp /system/bin/tmp
 adb shell tmp
-adb shell rm /system/bin/$recovery
+adb shell rm /system/bin/boot.img
 adb shell rm /system/bin/tmp
-adb reboot
+adb reboot system
 rm tmp
 
 

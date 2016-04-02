@@ -1,0 +1,101 @@
+#!/bin/bash
+#Permission
+chmod 775 tools/sdat2img.py
+chmod 775 tools/rimg2sdat
+chmod 775 tools/make_ext4fs
+chmod 775 tools/xterm
+#Dir
+mkdir tmp 
+cd tmp
+echo "######################"
+echo "enter path to base rom"
+echo "######################"
+mkdir base
+mkdir base/tools
+cp ../tools/sdat2img.py base/tools/sdat2img.py
+cp ../tools/rimg2sdat base/tools/rimg2sdat
+cp ../tools/make_ext4fs base/tools/make_ext4fs
+cp ../tools/xterm base/tools/xterm
+cd base
+baserom=""
+read baserom
+cp $baserom $baserom
+cd ../
+echo "######################"
+echo "Copied base rom"
+echo "######################"
+echo "Now enter path to port rom"
+mkdir port
+mkdir port/tools
+cp ../tools/sdat2img.py port/tools/sdat2img.py
+cp ../tools/rimg2sdat port/tools/rimg2sdat
+cp ../tools/make_ext4fs port/tools/make_ext4fs
+cp ../tools/xterm base/port/xterm
+cd port
+portrom=""
+read portrom
+cp $portrom $portrom
+cd ../
+echo "######################"
+echo "Copied port rom"
+echo "######################"
+echo "######################"
+echo "Unzipping base rom"
+echo "######################"
+cd base
+unzip *.zip
+rm *.zip
+cd ../
+echo "######################"
+echo "Unzipping port rom"
+echo "######################"
+cd port
+unzip *.zip
+rm *.zip
+rm boot.img
+cd ../
+echo "#######################################################"
+echo "extracting system.img from system.new.dat from base rom"
+echo "########################################################"
+cd base
+./tools/sdat2img.py system.transfer.list system.new.dat system.img
+rm system.new.dat
+cd ..
+echo "#######################################################"
+echo "extracting system.img from system.new.dat from port rom"
+echo "########################################################"
+cd base
+./tools/sdat2img.py system.transfer.list system.new.dat system.img
+rm system.new.dat
+cd ..
+echo "#####################################"
+echo "Mounting File systems "
+echo "#####################################"
+mkdir output_base
+mkdir output_port
+sudo mount -t ext4 -o loop base/system.img output_base/
+sudo mount -t ext4 -o loop port/system.img output_port/
+echo "##############################################"
+echo "Press ctrl+c in terminal when changes are done "
+echo "##############################################"
+#Changes
+xterm -e ./xterm
+cd base
+echo "Enter Image size in bytes"
+size=""
+read size
+sudo ./tools/make_ext4fs -T 0 -S file_contexts -l $size -a system system_new.img ../output_base/
+./rimg2sdat system_new.img
+sudo umount system.img ../output_base/
+rm system.img
+rm system_new.img
+cd ..
+rm -rf port
+cd base
+name=""
+echo "################"
+echo "Enter zip name "
+echo "###############"
+read name
+zip $name.zip -r install/ system.new.dat system.patch.dat system.transfer.list boot.img file_contexts META-INF/ install/ system/
+mv $name.zip ../../$name.zip
