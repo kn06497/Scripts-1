@@ -1,8 +1,0 @@
-#!/bin/bash
-git init 
-git add .
-git status
-echo "Enter commit message"
-commit=""
-read commit
-git commit -m "$commit"
