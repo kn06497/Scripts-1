@@ -3,7 +3,7 @@ How to use:-
 
 1. `cd to/that/folder/`
 
-2. `./makebootimage .
+2. `./makebootimage . `
 
 3. `Enter path to boot.img .`
 
