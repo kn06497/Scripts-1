@@ -1,14 +1,7 @@
 #!/bin/bash
 adb devices
-echo "press enter  when device booted into recovery"
 adb reboot recovery
-enter=""
-read enter
-echo ""
-echo "#########################################################"
-echo ""
-echo "Enter path to your Boot or recovery whatever you are flashing "
-echo ""
+adb wait-for-device
 echo "#########################################################"
 echo ""
 echo "For example mine boot.img path is :- mmcblk0p5"
@@ -28,7 +21,7 @@ echo "#/bin/bash
 cd /system/bin
 dd if=boot.img of=/dev/block/$flash" > tmp
 chmod 775 tmp
-adb push tmp /system/bin/tmp
+adb push tmp /sbin/tmp
 adb shell tmp
 adb shell rm /system/bin/boot.img
 adb shell rm /system/bin/tmp
