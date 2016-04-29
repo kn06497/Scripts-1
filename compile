@@ -12,5 +12,22 @@ echo "########################"
 echo ""
 choice=""
 read choice
-lunch $choice
+echo ""
+echo "########################"
+echo "Type brand name of device for eg= samsung"
+echo "########################"
+echo ""
+brand=""
+read brand
+
+echo "add_lunch_combo cm_$choice-userdebug
+function delos3geur 
+{
+  lunch cm_$choice-userdebug
+  mka bacon -j10
+}" > device/$brand/$choice
+echo "Next time type this to compile:-"
+echo ". build/envsetup.sh "
+echo "$choice"
+sleep 5
 mka bacon -j10
