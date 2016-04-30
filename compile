@@ -25,7 +25,7 @@ function delos3geur
 {
   lunch cm_$choice-userdebug
   mka bacon -j10
-}" > device/$brand/$choice
+}" > device/$brand/$choice/vendorsetup.sh
 echo "Next time type this to compile:-"
 echo ". build/envsetup.sh "
 echo "$choice"
