@@ -4,7 +4,7 @@
 void load_menu(void);
 void dtb(void);
 void non_dtb(void);
-char *build = "build";
+char *build = "new";
 int main(int argc, char** argv)
 {
     load_menu();
